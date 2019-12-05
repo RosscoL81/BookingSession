@@ -44,4 +44,10 @@ class BookingserviceApplicationTests {
 		assertEquals(2, foundCustomers.size());
 	}
 
+	@Test
+	public void canGetCoursesWithGivenCustomer(){
+		List<Course> foundCourses = courseRepository.getAllCoursesWithGivenCustomer(1L);
+		assertEquals(2, foundCourses.size());
+	}
+
 }
