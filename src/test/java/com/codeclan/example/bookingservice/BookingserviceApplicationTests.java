@@ -57,4 +57,10 @@ class BookingserviceApplicationTests {
 		assertEquals("Emily", foundBookings.get(0).getCustomer().getName());
 	}
 
+	@Test
+	public void canGetCustomersWithGivenCourseAndGivenTown(){
+		List<Customer> foundCustomers = customerRepository.getAllCustomersWithGivenTownOnGivenCourse(2L, "Dalkeith");
+		assertEquals(1, foundCustomers.size());
+	}
+
 }

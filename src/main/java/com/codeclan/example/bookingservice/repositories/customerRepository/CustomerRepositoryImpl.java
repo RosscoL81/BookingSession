@@ -34,4 +34,23 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
         }
         return result;
     }
+
+    @Transactional
+    public List<Customer> getAllCustomersWithGivenTownOnGivenCourse(Long courseId, String town) {
+        List<Customer> result = null;
+
+        Session session = entityManager.unwrap(Session.class);
+        try{
+            Criteria cr = session.createCriteria(Customer.class);
+            cr.createAlias("bookings", "booking");
+            cr.add(Restrictions.eq("booking.course.id", courseId));
+            cr.add(Restrictions.eq("town", town));
+            result = cr.list();
+        } catch (HibernateException ex){
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 }
