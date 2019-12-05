@@ -1,5 +1,6 @@
 package com.codeclan.example.bookingservice;
 
+import com.codeclan.example.bookingservice.models.Booking;
 import com.codeclan.example.bookingservice.models.Course;
 import com.codeclan.example.bookingservice.models.Customer;
 import com.codeclan.example.bookingservice.repositories.bookingRepository.BookingRepository;
@@ -48,6 +49,12 @@ class BookingserviceApplicationTests {
 	public void canGetCoursesWithGivenCustomer(){
 		List<Course> foundCourses = courseRepository.getAllCoursesWithGivenCustomer(1L);
 		assertEquals(2, foundCourses.size());
+	}
+
+	@Test
+	public void canGetBookingsWithGivenDate(){
+		List<Booking> foundBookings = bookingRepository.getAllBookingsForGivenDate("05-12-19");
+		assertEquals("Emily", foundBookings.get(0).getCustomer().getName());
 	}
 
 }
