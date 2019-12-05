@@ -4,10 +4,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
-@Table(name = "courses")
-public class Course {
+@Table(name = "customers")
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,19 +15,19 @@ public class Course {
     private String name;
     @Column(name = "town")
     private String town;
-    @Column(name = "star_rating")
-    private int starRating;
-    @OneToMany(mappedBy = "course")
+    @Column(name = "age")
+    private int age;
+    @OneToMany(mappedBy = "customer")
     private List<Booking> bookings;
 
-    public Course(String name, String town, int starRating) {
+    public Customer(String name, String town, int age) {
         this.name = name;
         this.town = town;
-        this.starRating = starRating;
+        this.age = age;
         this.bookings = new ArrayList<>();
     }
 
-    public Course(){}
+    public Customer(){}
 
     public Long getId() {
         return id;
@@ -54,12 +53,12 @@ public class Course {
         this.town = town;
     }
 
-    public int getStarRating() {
-        return starRating;
+    public int getAge() {
+        return age;
     }
 
-    public void setStarRating(int starRating) {
-        this.starRating = starRating;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public List<Booking> getBookings() {
