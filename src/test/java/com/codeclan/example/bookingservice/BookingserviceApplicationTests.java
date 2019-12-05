@@ -1,6 +1,7 @@
 package com.codeclan.example.bookingservice;
 
 import com.codeclan.example.bookingservice.models.Course;
+import com.codeclan.example.bookingservice.models.Customer;
 import com.codeclan.example.bookingservice.repositories.bookingRepository.BookingRepository;
 import com.codeclan.example.bookingservice.repositories.courseRepository.CourseRepository;
 import com.codeclan.example.bookingservice.repositories.customerRepository.CustomerRepository;
@@ -30,11 +31,17 @@ class BookingserviceApplicationTests {
 	BookingRepository bookingRepository;
 
 	@Test
-	public void canGetWithGivenStarRating(){
+	public void canGetCoursesWithGivenStarRating(){
 		List<Course> foundCourses = courseRepository.getAllCoursesWithGivenRating(3);
 		assertEquals(1, foundCourses.size());
 		assertEquals("Dealing with Silent Cohorts", foundCourses.get(0).getName());
 
+	}
+
+	@Test
+	public void canGetCustomersOnGivenCourse(){
+		List<Customer> foundCustomers = customerRepository.getAllCustomersOnGivenCourse(2L);
+		assertEquals(2, foundCustomers.size());
 	}
 
 }
